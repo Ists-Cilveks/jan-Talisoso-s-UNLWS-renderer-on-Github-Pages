@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+.godot/
+*.tmp
+
+# Project specific ignores
+Images/Glyphs/*.svg.import
+Export/*

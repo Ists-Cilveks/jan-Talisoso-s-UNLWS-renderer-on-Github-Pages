@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://pqgvl8pp1tfe"]
+
+[sub_resource type="FontVariation" id="FontVariation_ignor"]
+variation_embolden = 0.62
+
+[resource]
+resource_name = "Bold label"
+font = SubResource("FontVariation_ignor")

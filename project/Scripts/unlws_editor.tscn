@@ -1,0 +1,273 @@
+[gd_scene load_steps=31 format=3 uid="uid://css6xu7374m8y"]
+
+[ext_resource type="Script" path="res://Scripts/UNLWS_editor.gd" id="1_5jbj8"]
+[ext_resource type="Script" path="res://Scripts/UI/UNLWSCanvas/glyph_canvas.gd" id="3_pniuy"]
+[ext_resource type="Script" path="res://Scripts/UI/UNLWSCanvas/selected_glyphs.gd" id="3_xo3q2"]
+[ext_resource type="Script" path="res://Scripts/UI/placed_glyphs.gd" id="5_41scr"]
+[ext_resource type="Script" path="res://Scripts/UI/glyph_search.gd" id="5_ucxqq"]
+[ext_resource type="Script" path="res://Scripts/UI/glyph_search_entry.gd" id="6_io2bl"]
+[ext_resource type="Script" path="res://Scripts/UI/Mouse.gd" id="7_mh8ie"]
+[ext_resource type="Texture2D" uid="uid://b2d5w02d3vhtj" path="res://Images/Icons/Cursors/crosshair.svg" id="8_wgcwp"]
+[ext_resource type="Script" path="res://Scripts/Popups/settings_button.gd" id="9_hdo0r"]
+[ext_resource type="Script" path="res://Scripts/editing_mode_button.gd" id="9_r78ay"]
+[ext_resource type="Script" path="res://Scripts/UI/undo_button.gd" id="10_o0csu"]
+[ext_resource type="Script" path="res://Scripts/UI/redo_button.gd" id="11_5gwt3"]
+[ext_resource type="Script" path="res://Scripts/UI/glyph_info_container.gd" id="11_kpgnh"]
+[ext_resource type="Script" path="res://Scripts/Popups/show_controls_button.gd" id="12_v1us4"]
+[ext_resource type="Script" path="res://Scripts/glyph_type_save_button.gd" id="14_1yuho"]
+[ext_resource type="Script" path="res://Scripts/add_binding_point_button.gd" id="14_burrm"]
+[ext_resource type="LabelSettings" uid="uid://pqgvl8pp1tfe" path="res://Styles/bold_label.tres" id="14_ijhnr"]
+[ext_resource type="Script" path="res://Scripts/UI/all_bp_info_grid.gd" id="14_s77wt"]
+[ext_resource type="Script" path="res://Scripts/UI/glyph_attributes_info.gd" id="15_go35b"]
+[ext_resource type="Script" path="res://temp/PathLineEdit.gd" id="16_ofrlu"]
+[ext_resource type="Script" path="res://Scripts/Popups/popup_container.gd" id="17_37ibm"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_0145j"]
+device = -1
+command_or_control_autoremap = true
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_myr5r"]
+events = [SubResource("InputEventKey_0145j")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_n0lb7"]
+device = -1
+command_or_control_autoremap = true
+keycode = 89
+unicode = 121
+
+[sub_resource type="InputEventKey" id="InputEventKey_mt04f"]
+device = -1
+command_or_control_autoremap = true
+shift_pressed = true
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_hnquk"]
+events = [SubResource("InputEventKey_n0lb7"), SubResource("InputEventKey_mt04f")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_j8uqg"]
+device = -1
+command_or_control_autoremap = true
+keycode = 80
+unicode = 112
+
+[sub_resource type="Shortcut" id="Shortcut_mtcwh"]
+events = [SubResource("InputEventKey_j8uqg")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ftsia"]
+device = -1
+command_or_control_autoremap = true
+keycode = 69
+unicode = 101
+
+[sub_resource type="Shortcut" id="Shortcut_ehh6t"]
+events = [SubResource("InputEventKey_ftsia")]
+
+[node name="UNLWSEditor" type="Node"]
+script = ExtResource("1_5jbj8")
+
+[node name="Mouse" type="Node2D" parent="."]
+z_index = 100
+script = ExtResource("7_mh8ie")
+
+[node name="Cursor" type="Sprite2D" parent="Mouse"]
+texture = ExtResource("8_wgcwp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GlyphSearch" type="Control" parent="MarginContainer"]
+visible = false
+z_index = 14
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("5_ucxqq")
+
+[node name="GlyphSearchEntry" type="LineEdit" parent="MarginContainer/GlyphSearch"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 158.0
+offset_right = 560.0
+offset_bottom = 189.0
+placeholder_text = "Glyph name:"
+script = ExtResource("6_io2bl")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/HSplitContainer/Control"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer"]
+layout_mode = 2
+
+[node name="Undo" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+disabled = true
+shortcut = SubResource("Shortcut_myr5r")
+text = "Undo"
+script = ExtResource("10_o0csu")
+
+[node name="Redo" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+disabled = true
+shortcut = SubResource("Shortcut_hnquk")
+text = "Redo
+"
+script = ExtResource("11_5gwt3")
+
+[node name="ShowControls" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Controls"
+script = ExtResource("12_v1us4")
+
+[node name="Settings" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_mtcwh")
+text = "Settings"
+script = ExtResource("9_hdo0r")
+
+[node name="MarginContainer1" type="MarginContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer"]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="InfoScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Info" type="GridContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EditingModeButton" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+toggle_mode = true
+shortcut = SubResource("Shortcut_ehh6t")
+text = "Edit glyph"
+script = ExtResource("9_r78ay")
+
+[node name="GlyphInfo" type="GridContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("11_kpgnh")
+
+[node name="GlyphAttributesLabel" type="Label" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+text = "Glyph attributes"
+label_settings = ExtResource("14_ijhnr")
+
+[node name="GlyphAttributes" type="GridContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 5
+columns = 2
+script = ExtResource("15_go35b")
+
+[node name="AllBindingPointInfoLabelBox" type="HBoxContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AllBindingPointInfoLabel" type="Label" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/AllBindingPointInfoLabelBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Binding points"
+
+[node name="AddBindingPointButton" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/AllBindingPointInfoLabelBox"]
+layout_mode = 2
+text = "➕"
+script = ExtResource("14_burrm")
+
+[node name="AllBindingPointInfo" type="GridContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("14_s77wt")
+
+[node name="FileDataLabel" type="Label" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+text = "File data"
+label_settings = ExtResource("14_ijhnr")
+
+[node name="FileData" type="GridContainer" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 5
+columns = 2
+
+[node name="PathLabel" type="Label" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/FileData"]
+layout_mode = 2
+text = "File path"
+
+[node name="PathLineEdit" type="LineEdit" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/FileData"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+script = ExtResource("16_ofrlu")
+
+[node name="SaveButton" type="Button" parent="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save glyph type"
+script = ExtResource("14_1yuho")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HSplitContainer/SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(930, 638)
+render_target_update_mode = 4
+
+[node name="Camera" type="Camera2D" parent="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport"]
+offset = Vector2(100, 0)
+zoom = Vector2(20, 20)
+
+[node name="Canvas" type="Node2D" parent="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport"]
+script = ExtResource("3_pniuy")
+
+[node name="SelectedGlyphs" type="Node2D" parent="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport/Canvas"]
+z_index = 1
+script = ExtResource("3_xo3q2")
+
+[node name="Glyphs" type="Node2D" parent="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport/Canvas"]
+script = ExtResource("5_41scr")
+
+[node name="PopupContainer" type="ColorRect" parent="MarginContainer"]
+visible = false
+z_index = 14
+layout_mode = 2
+color = Color(0.376471, 0.376471, 0.376471, 0.792157)
+script = ExtResource("17_37ibm")
+
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer/Undo" to="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer/Undo" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer/Redo" to="MarginContainer/HSplitContainer/Control/VSplitContainer/GridContainer/Redo" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/EditingModeButton" to="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/EditingModeButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/AllBindingPointInfoLabelBox/AddBindingPointButton" to="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/AllBindingPointInfoLabelBox/AddBindingPointButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/SaveButton" to="MarginContainer/HSplitContainer/Control/VSplitContainer/MarginContainer1/InfoScrollContainer/Info/GlyphInfo/SaveButton" method="_on_pressed"]
+[connection signal="child_order_changed" from="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport/Canvas/SelectedGlyphs" to="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport/Canvas/SelectedGlyphs" method="_on_child_order_changed"]
+[connection signal="child_entered_tree" from="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport/Canvas/Glyphs" to="MarginContainer/HSplitContainer/SubViewportContainer/SubViewport/Canvas/Glyphs" method="_on_child_entered_tree"]

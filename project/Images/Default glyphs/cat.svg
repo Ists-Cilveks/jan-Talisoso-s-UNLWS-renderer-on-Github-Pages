@@ -1,0 +1,23 @@
+<svg
+	width="16.58816"
+	height="11.770386"
+	viewBox="0 0 16.58816 11.770385"
+	version="1.1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:unlws-renderer="https://github.com/Ists-Cilveks/UNLWS-renderer">
+	<g
+		transform="translate(-15.725407,-15.184546)"
+		id="cat">
+		<path
+			style="fill:none;fill-opacity:0.494828;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none"
+			d="m 31.813567,26.245928 c -4.858896,0.08834 -7.038036,0.117794 -9.6,0.206136 -2.561963,0.08834 -4.829448,-2.002454 -2.561963,-3.946012 2.267485,-1.943559 4.682209,0.176687 5.330062,0.765644" />
+		<path
+			style="fill:none;fill-opacity:0.494828;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+			d="m 16.225407,20.10004 c 1.230672,-4.172717 1.599674,-4.415518 1.599674,-4.415518 l 1.875419,4.03952 c 0,0 3.433517,-7.84299 7.637912,0.05747" />
+		<unlws-renderer:bp
+			name="X"
+			x="16.1245937347412"
+			y="11.0654535293579"
+			angle="0" />
+	</g>
+</svg>

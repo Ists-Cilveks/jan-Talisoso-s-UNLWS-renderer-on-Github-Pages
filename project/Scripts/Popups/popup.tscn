@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cygnq37lffaup"]
+
+[ext_resource type="Script" path="res://Scripts/Popups/popup.gd" id="1_nwkt5"]
+
+[node name="Popup" type="Control"]
+z_index = 50
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nwkt5")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = 75.0
+grow_horizontal = 0
+text = "×"
+
+[connection signal="pressed" from="Container/CloseButton" to="." method="_on_close_button_pressed"]

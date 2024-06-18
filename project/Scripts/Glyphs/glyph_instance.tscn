@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://df0ydx8ai3kyt"]
+
+[ext_resource type="Script" path="res://Scripts/Glyphs/GlyphInstance.gd" id="1_h1ta7"]
+[ext_resource type="Script" path="res://Scripts/Glyphs/bp_container.gd" id="2_nebr1"]
+
+[node name="GlyphInstance" type="Node2D" node_paths=PackedStringArray("focused_on_bp_node", "bp_container_node", "sprite_node")]
+script = ExtResource("1_h1ta7")
+focused_on_bp_node = NodePath("FocusedOnBP")
+bp_container_node = NodePath("FocusedOnBP/BPContainer")
+sprite_node = NodePath("FocusedOnBP/Sprite")
+
+[node name="FocusedOnBP" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="FocusedOnBP"]
+scale = Vector2(0.04, 0.04)
+centered = false
+
+[node name="BPContainer" type="Node2D" parent="FocusedOnBP"]
+script = ExtResource("2_nebr1")

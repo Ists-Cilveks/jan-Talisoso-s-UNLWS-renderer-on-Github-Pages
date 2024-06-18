@@ -1,0 +1,16 @@
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:unlws-renderer="https://github.com/Ists-Cilveks/UNLWS-renderer">
+	<g
+		transform="translate(0.5, 0.5)"
+		id="amused">
+		<path
+			style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round"
+			d="m 0,13 L 5,0 C 6,7 12,6 14,2 H 8" />
+		<unlws-renderer:bp
+			name="X"
+			x="0.5"
+			y="13.5"
+			angle="110" />
+	</g>
+</svg>

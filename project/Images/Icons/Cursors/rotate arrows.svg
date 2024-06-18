@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="-11 -11 22 22"
+   xmlns="http://www.w3.org/2000/svg">
+   <defs
+      id="defs1">
+      <path
+         style="color:#000000;fill:#323232;fill-opacity:1;stroke:#ffffff;stroke-linecap:none;stroke-linejoin:round;stroke-opacity:0.83829784;stroke-width:1;"
+         d="
+         M 1.5 0
+         Q 1.5 -5 -1 -8
+         L 1 -9.5
+         L -4.2 -10.8
+         L -6 -5.7
+         L -3.8 -6.8
+         Q -1.5 -4 -1.5 0
+         "
+         id="bent-arrow" />
+      </defs>
+   <g
+      id="layer1">
+      <use href="#bent-arrow" />
+      <use href="#bent-arrow" transform="scale(1, -1)" />
+   </g>
+</svg>
