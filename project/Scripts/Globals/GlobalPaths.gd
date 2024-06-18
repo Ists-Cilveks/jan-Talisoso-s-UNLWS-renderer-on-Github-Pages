@@ -1,10 +1,10 @@
 extends Node
 
-var glyph_save_folder = "user://Glyphs/"
-var input_folder = "user://Input/"
-var output_folder = "user://Output/"
+var glyph_save_folder = "res://Glyphs/"
+var input_folder = "res://Input/"
+var output_folder = "res://Output/"
 var default_glyphs_folder = "res://Images/Default glyphs/"
-var user_settings_folder = "user://Settings/"
+var user_settings_folder = "res://Settings/"
 
 func _ready():
 	var folders_to_make = [

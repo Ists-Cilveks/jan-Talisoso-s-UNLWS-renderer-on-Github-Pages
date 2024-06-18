@@ -5,3 +5,4 @@
 # Project specific ignores
 Images/Glyphs/*.svg.import
 Export/*
+Output/*
